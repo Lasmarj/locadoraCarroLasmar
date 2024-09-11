@@ -24,11 +24,11 @@ public class EntradaLocadora {
             System.out.println("|   1- Cadastrar Veiculo                      |");
             System.out.println("|   2- Consultar Veiculo (Placa)              |");
             System.out.println("|   3- Vender Veículo (Placa)                 |");
-            System.out.println("|   4- Pesquisar Veículo (Marca/Modelo)       |");
-            System.out.println("|   5- Pesquisar Veículos Disponíveis         |");
+            System.out.println("|   4- Pesquisar Veículo (Modelo/Marca)       |");
+            System.out.println("|   5- Pesquisar Veículos (Ano/Valor)         |");
             System.out.println("|   6- Listar Veículos Disponíveis            |");
             System.out.println("|   7- Listar Veículos Vendidos               |");
-            System.out.println("|   8- Informações da Loja Lasmr Car          |");
+            System.out.println("|   8- Informações da Loja Lasmar Car         |");
             System.out.println("|   9- Sair                                   |");
             System.out.println("-----------------------------------------------");
             opcao = entrada.nextInt();
@@ -40,20 +40,21 @@ public class EntradaLocadora {
                 case 2:
                     consultarVeiculoPlaca(loja, entrada);
                     break;
-                //case 3:
-                //    venderVeiculoPlaca(loja, entrada);
-                //case 4:
-                //    pesquisarVeiculoMarcaModelo(loja, entrada);
-                //    break;
-                //case 5:
-                //    pesquisarVeiculoDisponivel(loja, entrada);
-                //    break;
-                //case 6:
-                //    listarVeiculosDisponivel();
-                //    break;
-                //case 7:
-                //    listarVeiculosVendidos();
-                //    break;
+                case 3:
+                    venderVeiculoPlaca(loja, entrada);
+                    break;
+                case 4:
+                    pesquisarVeiculoMarcaModelo(loja, entrada);
+                    break;
+                case 5:
+                    pesquisarVeiculoAnoValor(loja, entrada);
+                    break;
+                case 6:
+                    listarVeiculosDisponivel(loja);
+                    break;
+                case 7:
+                    listarVeiculosVendidos(loja);
+                    break;
                 //case 8:
                 //    informacoesDaLoja();
                 //    break;
@@ -84,7 +85,7 @@ public class EntradaLocadora {
         System.out.println("Informe o valor da Diária: ");
         double valorDiaria = entrada.nextDouble();
         System.out.println("\n");
-        System.out.println("Informe a situação do veículo: (1- Alugado, 2- Manutenção, 3- Disponível: ");
+        System.out.println("Informe a situação do veículo: (1- Alugado, 2- Manutenção, 3- Disponível ");
         int situacao = entrada.nextInt();
 
         if(tipoVeiculo == 1){
@@ -144,13 +145,55 @@ public class EntradaLocadora {
         System.out.println("Informe a Placa: ");
         String placa = entrada.next().toUpperCase();
 
-        List<Veiculo> veiculo = loja.consultarVeiculoPlaca(placa);
+        Veiculo veiculo = loja.consultarVeiculoPlaca(placa);
 
-        if(!veiculo.isEmpty()){
+        if(veiculo != null){
             System.out.println(veiculo);
         }else{
             System.out.println("Placa não cadastrada!!!");
         }
+    }
+
+    public static void venderVeiculoPlaca(Loja loja, Scanner entrada) {
+        System.out.println("Informe a Placa: ");
+        String placa = entrada.next().toUpperCase();
+        loja.venderVeiculoPorPlaca(placa);
+    }
+
+    public static void pesquisarVeiculoMarcaModelo(Loja loja, Scanner entrada) {
+        System.out.println("Informe a Modelo: ");
+        String modelo = entrada.next().toUpperCase();
+        System.out.println("Informe a Marca: ");
+        String marca = entrada.next().toUpperCase();
+
+        var veiculos = loja.pesquisarVeiculo(modelo, marca);
+        if(!veiculos.isEmpty()){
+            System.out.println(veiculos.toString());
+        }else{
+            System.out.println("Veículo não encontrado!!!");
+        }
+    }
+
+    public static void pesquisarVeiculoAnoValor(Loja loja, Scanner entrada) {
+        System.out.println("Informe o Ano: ");
+        int ano = entrada.nextInt();
+        System.out.println("Informe o Valor: ");
+        double valor = entrada.nextDouble();
+
+        var veiculos = loja.pesquisarVeiculo(ano, valor);
+        if(!veiculos.isEmpty()){
+            System.out.println(veiculos.toString());
+        }else{
+            System.out.println("Veículo não encontrado!!!");
+        }
+    }
+
+    public static void listarVeiculosDisponivel(Loja loja){
+        loja.veiculosDisponiveis();
+    }
+
+    public static void listarVeiculosVendidos(Loja loja){
+        loja.veiculosVendidos();
     }
 
 }

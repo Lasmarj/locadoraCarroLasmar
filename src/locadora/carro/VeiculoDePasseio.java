@@ -38,17 +38,17 @@ public class VeiculoDePasseio extends Veiculo{
 
     @Override
     public String toString() {
-        return "VeiculoDePasseio{" +
-                "numeroPortas=" + numeroPortas + '\'' +
-                ", possuiArCondicionado=" + possuiArCondicionado + '\'' +
-                ", possuiDirecao=" + possuiDirecao + '\'' +
-                ", placa='" + placa + '\'' +
-                ", cor='" + cor + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", fabricante='" + fabricante + '\'' +
-                ", anoFabricacao=" + anoFabricacao + '\'' +
-                ", valorDiaria=" + valorDiaria + '\'' +
-                ", situacao=" + situacao +'\'' +
+        return "Veiculo De Passeio{" +
+                "Quantidade de Portas= '" + numeroPortas + '\'' +
+                ", Ar Condicionado= '" + possuiArCondicionado + '\'' +
+                ", Direcao= '" + possuiDirecao + '\'' +
+                ", Placa= '" + placa + '\'' +
+                ", Cor= '" + cor + '\'' +
+                ", Modelo= '" + modelo + '\'' +
+                ", Fabricante= '" + fabricante + '\'' +
+                ", Ano de Fabricacao= '" + anoFabricacao + '\'' +
+                ", Valor da Diaria= '" + valorDiaria + '\'' +
+                ", 'Situacao= '" + situacao +'\'' +
                 '}';
     }
 }
